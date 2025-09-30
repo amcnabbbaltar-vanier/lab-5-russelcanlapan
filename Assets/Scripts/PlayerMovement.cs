@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     // ============================== Animation Variables ==============================
     [Header("Anim values")]
     public float groundSpeed; // Speed value used for animations
+    internal bool isGrounded;
 
     // ============================== Character State Properties ==============================
     /// <summary>
@@ -191,11 +192,11 @@ public class PlayerMovement : MonoBehaviour
         // Preserve the current Y velocity to maintain gravity effects
         Vector3 newVelocity = new Vector3(
             moveDirection.x * speed * speedMultiplier, 
-            rb.velocity.y, // Keep the existing Y velocity for jumping & gravity
+            rb.linearVelocity.y, // Keep the existing Y velocity for jumping & gravity
             moveDirection.z * speed * speedMultiplier
         );
 
         // Apply the new velocity directly
-        rb.velocity = newVelocity;
+        rb.linearVelocity = newVelocity;
     }
 }
